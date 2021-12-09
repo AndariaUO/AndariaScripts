@@ -32,7 +32,6 @@ def FindHorse():
 	return False
 	
 def FeedHorse():
-	print Name("horse")
 	while True:
 		ClearJournal()
 		if not FindType(VratTyp("seno"), -1, "self"):
@@ -42,7 +41,7 @@ def FeedHorse():
 		MoveItem("found", "horse", 1)
 		WhisperMsg("all stop")
 		Pause(pause)
-		if InJournal("Asi se to tvému miláèkovi pøíli nelíbí..."):
+		if InJournal("Asi se to tvému miláèkovi pøíli nelíbí...") or InJournal("To není tvé zvíøe!"):
 			return
 
 
@@ -55,9 +54,10 @@ def WaterHorse():
 		WaitForGump(0x0000042e, 1000)
 		if GumpExists(0x0000042e):
 			ReplyGump(0x0000042e, 1)
-		if not FindTypeList("watersources", 2):
-			SysMessage("Nemám žádný zdroj vody")
-			break
+		if not FindTypeList("watersources", -1, "self"):
+			if not FindTypeList("watersources", 2):
+				SysMessage("Nemám žádný zdroj vody")
+				break
 		Target("found")
 		Pause(pause)
 		if InJournal("nenapije") or InJournal("daleko"):
