@@ -13,11 +13,9 @@ def Main():
 	SysMessage("Hotovo")
 	
 def Init():
-	Makelist("horses")
-	Makelist("watersources")
 	ClearIgnoreList()
-	if FindType(VratTyp("pripousteci_hul"),-1,"self"):
-		EquipType(VratTyp("pripousteci_hul"), "TwoHanded")
+	if FindTypeBy("pripousteci_hul",-1,"self"):
+		EquipType(GetGraphicsIdWithType("pripousteci_hul"), "TwoHanded")
 	else:
 		if not ConfirmPrompt("Nemám připouštěcí hůl, chceš pokračovat?"):
 			Stop()
@@ -34,8 +32,8 @@ def FindHorse():
 def FeedHorse():
 	while True:
 		ClearJournal()
-		if not FindType(VratTyp("seno"), -1, "self"):
-			if not FindType(VratTyp("seno"), 3):
+		if not FindTypeBy("seno", -1, "self"):
+			if not FindTypeBy("seno", 3):
 				SysMessage("Nemám seno")
 				return
 		MoveItem("found", "horse", 1)
