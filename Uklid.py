@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+# Name: Uklid
+# Description: Skript, který je složitý na nastavení, ale potom sám chodí a vyrovnáva itemy z loot pytlíčku. Ukázkový konfig je v UklidExampleConfig
+# Author: Draff
+# Era: Any
+
 from Assistant import Engine
 from DorchLib import *
 import re
