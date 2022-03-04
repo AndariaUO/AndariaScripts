@@ -1,0 +1,106 @@
+﻿<Window 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="RailEditor" Height="799.5" Width="1200">
+    <Grid x:Name="lb_macro">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border>
+            <Grid>
+                <TextBox x:Name="txt_macro" HorizontalAlignment="Left" Margin="0,3,0,0" Text="My macro" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="30" FontSize="16"/>
+                <Button x:Name="btn_m_Add" ToolTip="Add new macro" FontFamily="Segoe MDL2 Assets" Content="&#xE109;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="215,5,0,0" Click="btn_m_Add_Click"/>
+                <Button x:Name="btn_m_Up" ToolTip="Move up" FontFamily="Segoe MDL2 Assets" Content="&#xE110;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="245,5,0,0" Click="btn_m_Up_Click"/>
+                <Button x:Name="btn_m_Down" ToolTip="Move down" FontFamily="Segoe MDL2 Assets" Content="&#xE74B;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="275,5,0,0" Click="btn_m_Down_Click"/>
+                <Button x:Name="btn_m_Rem" ToolTip="Remove" FontFamily="Segoe MDL2 Assets" Content="&#xE108;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="305,5,0,0" Click="btn_m_Rem_Click"/>
+                <Button x:Name="btn_m_Import" ToolTip="Import" FontFamily="Segoe MDL2 Assets" Content="&#xE8B5;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="335,5,0,0" Click="btn_m_Import_Click"/>
+                <Button x:Name="btn_m_Export" ToolTip="Export" FontFamily="Segoe MDL2 Assets" Content="&#xede1;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="365,5,0,0" Click="btn_m_Export_Click"/>
+                <ListBox x:Name="lst_macro" HorizontalAlignment="Stretch" Width="Auto" Margin="0,35,0,0" SelectionChanged="lst_macro_changed">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock MouseDown="txtblk_macro_MouseDown" Text="{Binding}"/>
+                                <TextBox LostFocus="txtbox_macro_LostFocus" Visibility="Collapsed" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="ContextMenu">
+                                <Setter.Value>
+                                    <ContextMenu>
+                                        <MenuItem Header="Remove" Click="btn_m_Rem_Click"/>
+                                        <MenuItem Header="Move up" Click="btn_m_Up_Click"/>
+                                        <MenuItem Header="Move down" Click="btn_m_Down_Click"/>
+                                        <MenuItem Header="Export" Click="btn_m_Export_Click"/>
+                                    </ContextMenu>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Content" Value="{Binding}"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </Grid>
+        </Border>
+        <Border Grid.Row="0" Grid.Column="1">
+            <Grid>
+                <ListBox x:Name="lst_rails" HorizontalAlignment="Stretch" Width="Auto" Margin="0,35,0,0" SelectionChanged="lst_rails_changed">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock MouseDown="txtblk_rails_MouseDown" Text="{Binding}"/>
+                                <TextBox LostFocus="txtbox_rails_LostFocus" Visibility="Collapsed" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="ContextMenu">
+                                <Setter.Value>
+                                    <ContextMenu>
+                                        <MenuItem Header="Remove" Click="btn_r_Rem_Click"/>
+                                        <MenuItem Header="Move up" Click="btn_r_Up_Click"/>
+                                        <MenuItem Header="Move down" Click="btn_r_Down_Click"/>
+                                        <MenuItem Header="Export" Click="btn_r_Export_Click"/>
+                                    </ContextMenu>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Content" Value="{Binding}"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+                <TextBox x:Name="txt_rails" HorizontalAlignment="Left" Margin="0,3,0,0" Text="My rails.." TextWrapping="Wrap" VerticalAlignment="Top" Width="180" Height="30" FontSize="16"/>
+                <Button x:Name="btn_r_Add" ToolTip="Add new rails" FontFamily="Segoe MDL2 Assets" Content="&#xE109;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="185,5,0,0" Click="btn_r_Add_Click"/>
+                <Button x:Name="btn_r_Up" ToolTip="Move up" FontFamily="Segoe MDL2 Assets" Content="&#xE110;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="215,5,0,0" Click="btn_r_Up_Click"/>
+                <Button x:Name="btn_r_Down" ToolTip="Move down" FontFamily="Segoe MDL2 Assets" Content="&#xE74B;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="245,5,0,0" Click="btn_r_Down_Click"/>
+                <Button x:Name="btn_r_Rem" ToolTip="Remove" FontFamily="Segoe MDL2 Assets" Content="&#xE108;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="275,5,0,0" Click="btn_r_Rem_Click"/>
+                <Button x:Name="btn_r_Import" ToolTip="Import" FontFamily="Segoe MDL2 Assets" Content="&#xE8B5;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="305,5,0,0" Click="btn_r_Import_Click"/>
+                <Button x:Name="btn_r_ImportEUO" ToolTip="Import from EUO" FontFamily="Segoe MDL2 Assets" Content="&#xE8B6;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="335,5,0,0" Click="btn_r_ImportEUO_Click"/>
+                <Button x:Name="btn_r_Export" ToolTip="Export" FontFamily="Segoe MDL2 Assets" Content="&#xEDE1;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="365,5,0,0" Click="btn_r_Export_Click"/>
+            </Grid>
+        </Border>
+        <Border Grid.Row="0" Grid.Column="2">
+            <Grid>
+                <Button x:Name="btn_p_Add" ToolTip="Add new position" FontFamily="Segoe MDL2 Assets" Content="&#xE109;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="219,5,0,0" Click="btn_p_Add_Click"/>
+                <Button x:Name="btn_p_AddTargetXY" ToolTip="Target new position ingame" FontFamily="Segoe MDL2 Assets" Content="&#xe7b7;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="279,5,0,0" Click="btn_p_AddTargetXY" IsEnabled="False"/>
+                <Button x:Name="btn_p_AddPlayerPos" ToolTip="Add player position" FontFamily="Segoe MDL2 Assets" Content="&#xe81d;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="249,5,0,0" Click="btn_p_AddPlayerPos" IsEnabled="False"/>
+                <Button x:Name="btn_p_Up" ToolTip="Move up" FontFamily="Segoe MDL2 Assets" Content="&#xE110;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="309,5,0,0" Click="btn_p_Up_Click" IsEnabled="False"/>
+                <Button x:Name="btn_p_Down" ToolTip="Move down" FontFamily="Segoe MDL2 Assets" Content="&#xE74B;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="339,5,0,0" Click="btn_p_Down_Click" IsEnabled="False"/>
+                <Button x:Name="btn_p_Rem" ToolTip="Remove" FontFamily="Segoe MDL2 Assets" Content="&#xE108;" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="369,5,0,0" Click="btn_p_Rem_Click" IsEnabled="False" RenderTransformOrigin="2.36,0.495"/>
+                <DataGrid x:Name="grid_pos" HorizontalAlignment="Stretch" Width="Auto" Margin="0,35,0,0" AutoGenerateColumns="False" SelectedCellsChanged="grid_pos_changed" CellEditEnding="grid_pos_edited" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="X" Binding="{Binding x}"/>
+                        <DataGridTextColumn Header="Y" Binding="{Binding y}"/>
+                        <DataGridTextColumn Header="Z" Binding="{Binding z}"/>
+                        <DataGridTextColumn Header="Poznámka (volitelná)" Binding="{Binding note}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

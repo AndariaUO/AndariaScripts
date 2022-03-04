@@ -1,0 +1,9 @@
+﻿<Window 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Import/Export" Height="290" Width="250" ResizeMode="NoResize">
+    <StackPanel>
+        <TextBox x:Name="txt_import" Width="Auto" Height="220" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Margin="0,0,0,5" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        <Button x:Name="btn_ok" Width="80" Height="20" Content="OK" HorizontalAlignment="Right" Margin="0,0,5,5"/>
+    </StackPanel>
+</Window>
