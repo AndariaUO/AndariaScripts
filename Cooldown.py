@@ -9,13 +9,13 @@ cds = {}
 def Main():
     LoadCooldowns()
     while cds:
-        gump = AFKGump()
+        gump = CooldownGump()
         gump.SendGump()
         Pause(1000)
     if gump is not None:
         gump.CloseGump()
 
-class AFKGump(Gump):            
+class CooldownGump(Gump):            
     def __new__(self):            
         gump = Gump.__new__(self, 250, 250, 800190019)
         gump.Closable = True
