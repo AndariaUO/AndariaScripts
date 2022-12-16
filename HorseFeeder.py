@@ -1,5 +1,5 @@
 from Assistant import Engine
-from DorchLib import *
+from AndariaLib import *
 
 pause = 500
 gumpID = 0x000003ff # Toto se občas mění z nějakého důvodu, je třeba potom otevřít gump připouštěcí hole, potom otevřít brouka vpravo nahoře v CA a z Gumpů zkopírovat Serial
