@@ -32,6 +32,7 @@ def KnownMine(mineName):
     currentPos = LoadMacroVariable(macroName, "currentPos", 0)
     while PathfindToRail(macroName, mineName, currentPos):
         currentPos += 1
+        SaveMacroVariable(macroName, "currentPos", currentPos)
         Dig()
         MoveMined()
         if DiffWeight() < 30:
