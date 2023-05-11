@@ -142,7 +142,6 @@ def GetWaterSpots():
         for y in range(Engine.Player.Y - 10, Engine.Player.Y + 10):
             xy = {'X': x, 'Y': y}
             if xy in ignoreList:
-                print "{0} - {1} uz jsi lovil".format(x,y)
                 continue
             d = Distance(x, y)
             if d > 6 or d == 1:
