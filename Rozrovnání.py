@@ -29,12 +29,14 @@ def Init():
             contName = name
         else:
             return
-    
+    # Odstranění názvu cechu, pokud je obsažen v názvu
+    if '[' in prefix:
+        prefix = prefix.split('[')[0].strip()
     memNameAcc = prefix + "_" + contName
     memName = Deaccent(memNameAcc)
     memory = LoadMacroVariable(macroName, memName, {})
     if memory == {}:
-        SysMessageYellow("Kontejner '" + contName + "' ještě neznám. Zakládám novou paměť.")
+        SysMessageYellow("Kontejner '" + memName + "' ještě neznám. Zakládám novou paměť.")
         
     ProcessBag()
     
@@ -53,12 +55,12 @@ def ProcessBag():
         if itemkey is None:
             itemkey = Deaccent(Name(item))
         if itemkey not in memory.keys() or (promptIgnored and memory[itemkey] == 0):
-            SysMessageBlue("Předmět '" + Name(item) + "' zatím nemám v paměti. Vyber kontejner do kterého ho chceš ukládat.")
+            ConfirmPrompt("Předmět '" + Name(item) + "' zatím nemám v paměti. Připrav kontejner do kterého ho chceš ukládat a klikni OK, pak ho vyber.")
             value = PromptAlias(prompt)
             memory[itemkey] = value
             UnsetAlias(prompt)
         
-        Move(item, itemkey, memory[itemkey])  
+        Move(item, itemkey, memory[itemkey])
 
 def Move(item, itemkey, tarCont):
     if tarCont != 0:
