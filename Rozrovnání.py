@@ -17,6 +17,7 @@ def Main():
 
 def Init():
     global memory
+    global prefix
     ClearIgnoreList()
     
     LoadAlias("kontejner")
