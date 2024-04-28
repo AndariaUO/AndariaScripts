@@ -20,7 +20,7 @@ def IdentifyMine(pickaxe):
         SysMessageOrange("Nemám krumpáč")
         return
     for pos in LoadRails(macroName, memName):
-        if Distance(pos.x, pos.y, Engine.Player.X, Engine.Player.Y) < 2:
+        if Distance(pos.x, pos.y) < 2:
             SysMessageGreen("Důl rozeznán jako " + pos.note)
             KnownMine(pos.note)
             return
