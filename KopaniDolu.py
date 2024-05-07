@@ -4,6 +4,8 @@ from AndariaLib import *
 macroName = "Kopání"
 memName = "Pamet"
 
+ignoreList = []
+
 def Main():
     CheckVersion()
     Init()
@@ -43,22 +45,40 @@ def KnownMine(mineName):
     PathfindToRail(macroName, memName, mineName)
 
 def Dig():
-    for i in [-1, 0, 1]: 
+    for i in [-1, 0, 1]:
         for j in [-1, 0, 1]:
-            if i != 0 and j != 0:
-                tries = 0
-                while True:
-                    Msg(".usehand")
-                    WaitForTarget(1000)
-                    TargetTileOffsetResource(i, j, 0)
-                    (idx, text) = WaitForJournal(["dalo dolovat", "vykopat", "Pokládá", "na to místo", "Zkus kopat"], 15000)
-                    if idx != None:
-                        if text == "vykopat":
-                            tries += 1
-                            if tries == 10:
-                                break
-                        if text == "dalo dolovat" or text == "na to místo" or text == "Zkus kopat":
-                            break
+            if i == 0 and j == 0:
+                continue
+            DigSpot(i,j)
+            Pause(500)
+    
+    if Engine.Player.Y != 1249 or Engine.Player.X == 1260:
+        Pathfind(Engine.Player.X, Engine.Player.Y + 1, Engine.Player.Z)
+        Pause(500)
+        DigSpot(0,-1)
+
+def DigSpot(x, y):
+    global fields, empty_fields, ignoreList
+    xy = {'X': Engine.Player.X + x, 'Y': Engine.Player.Y + y}
+    if xy in ignoreList:
+        return
+    ignoreList.append(xy)
+    tries = 0
+    while True:
+        tries += 1
+        Msg(".usehand")
+        WaitForTarget(15000)
+        TargetTileOffsetResource(x, y, 0)
+        (idx, text) = WaitForJournal([
+            "dalo dolovat", "vykopat", "Pokládá", "na to místo",
+            "Zkus kopat"
+        ], 15000)
+        if idx != None:
+            if text == "vykopat":
+                if tries == 10:
+                    return
+            if text == "dalo dolovat" or text == "na to místo" or text == "Zkus kopat":
+                return
                             
 def MoveMined():
     mined = FindTypeList("dolovane", 0, loc="backpack", returnAllItems=True)
