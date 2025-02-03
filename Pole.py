@@ -1,5 +1,5 @@
 from Assistant import Engine
-from DorchLib import *
+from AndariaLib import *
 
 macroName = "Pole"
 memName = "Pamet"
